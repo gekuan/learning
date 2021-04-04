@@ -6,16 +6,16 @@ int Solution(std::vector<int> &data, int value) {
   int left_index = 0;
   int right_index = size - 1;
   while (left_index <= right_index) {
-    int middle_index = (right_index - left_index) / 2;
+    int middle_index = left_index + (right_index - left_index) / 2;
     if (data[middle_index] > value) {
-      left_index = middle_index + 1;
-    } else if (data[middle_index] < value) {
       right_index = middle_index - 1;
-    } else if (data[middle_index] == value) {
+    } else if (data[middle_index] < value) {
+      left_index = middle_index + 1;
+    } else {
       return middle_index;
     }
   }
-  return size;
+  return right_index + 1;
 }
 
 int main() {
